@@ -9,10 +9,6 @@ export const createExpense = (dto: CreateExpenseDto): string => {
     throw new HttpError(400, "Price must be positive number!");
   }
 
-  if (Object.keys(dto.spender).length === 0) {
-    throw new HttpError(400, "Spender can not be empty!");
-  }
-
   const checkSpenderExist = users.find((item) => item.id === dto.spender.id);
   if (checkSpenderExist === undefined) {
     throw new HttpError(400, "Spender does not exist!");
