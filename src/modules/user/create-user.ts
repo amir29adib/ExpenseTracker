@@ -2,9 +2,10 @@ import { v4 } from "uuid";
 import { User, users } from "../../models/user.model";
 import { HttpError } from "../../utilities/http-error";
 import { CreateUserDto } from "../../modules/user/dto/create-user.dto";
+import { isEmptyString } from "../../utilities/empty-validation";
 
 export const createUser = (dto: CreateUserDto): string => {
-  if (dto.username === "" || dto.password === "") {
+  if (isEmptyString(dto.username) || isEmptyString(dto.password)) {
     throw new HttpError(400, "Username or Password is empty!");
   }
 
