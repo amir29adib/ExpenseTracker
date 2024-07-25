@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { createExpense } from "../modules/expense/create-expense";
 import { HttpError } from "../utilities/http-error";
 
@@ -5,10 +6,10 @@ describe("Create Expense", () => {
   it("should not create if cost is not positive", () => {
     expect(() =>
       createExpense({
-        group_id: "sdsdvdffvdvs4234fvsfv",
+        group_id: v4(),
         cost: 0,
         spender: {
-          id: "abbfdert231dcsdc3sdc",
+          id: v4(),
           username: "ali",
           password: "ali1234",
         },
@@ -17,10 +18,10 @@ describe("Create Expense", () => {
     ).toThrow(HttpError);
     expect(() =>
       createExpense({
-        group_id: "sdsdvdffvdvs4234fvsfv",
+        group_id: v4(),
         cost: -10,
         spender: {
-          id: "abbfdert231dcsdc3sdc",
+          id: v4(),
           username: "ali",
           password: "ali1234",
         },
@@ -32,10 +33,10 @@ describe("Create Expense", () => {
   it("should not create if the spender does not exist!", () => {
     expect(() =>
       createExpense({
-        group_id: "sdsdvdffvdvs4234fvsfv",
+        group_id: v4(),
         cost: 10000,
         spender: {
-          id: "abbfdert231dcsdc3sdc",
+          id: v4(),
           username: "ali",
           password: "ali1234",
         },
