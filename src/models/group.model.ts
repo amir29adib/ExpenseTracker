@@ -1,5 +1,3 @@
-import { User } from "models/user.model";
-
 export interface Group {
   id: string;
   user_ids: string[];

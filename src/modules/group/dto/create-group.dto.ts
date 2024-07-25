@@ -1,4 +1,3 @@
-import { generalUserDto } from "modules/user/dto/general-user.dto";
 import { string, z } from "zod";
 
 export const createGroupDto = z.object({

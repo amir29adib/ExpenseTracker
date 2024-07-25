@@ -1,5 +1,5 @@
-import { createUser } from "modules/user/create-user";
-import { HttpError } from "utilities/http-error";
+import { createUser } from "../modules/user/create-user";
+import { HttpError } from "../utilities/http-error";
 
 describe("Create User", () => {
   it("should not create if username or password is empty", () => {

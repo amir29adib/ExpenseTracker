@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
-import { User, users } from "models/user.model";
-import { HttpError } from "utilities/http-error";
-import { CreateUserDto } from "modules/user/dto/create-user.dto";
+import { User, users } from "../../models/user.model";
+import { HttpError } from "../../utilities/http-error";
+import { CreateUserDto } from "../../modules/user/dto/create-user.dto";
 
 export const createUser = (dto: CreateUserDto): string => {
   if (dto.username === "" || dto.password === "") {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createGroup } from "modules/group/create-group";
+import { createGroup } from "../modules/group/create-group";
 
 export const app = Router();
 

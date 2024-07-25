@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createExpense } from "modules/expense/create-expense";
+import { createExpense } from "../modules/expense/create-expense";
 
 export const app = Router();
 

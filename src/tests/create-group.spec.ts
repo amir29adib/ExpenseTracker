@@ -1,6 +1,6 @@
-import { createGroup } from "modules/group/create-group";
-import { createUser } from "modules/user/create-user";
-import { HttpError } from "utilities/http-error";
+import { createGroup } from "../modules/group/create-group";
+import { createUser } from "../modules/user/create-user";
+import { HttpError } from "../utilities/http-error";
 
 describe("Create Group", () => {
   it("should not create if one user_ids is repetitious", () => {

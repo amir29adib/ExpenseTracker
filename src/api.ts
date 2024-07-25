@@ -1,7 +1,7 @@
 import express from "express";
-import { app as userRoutes } from "routes/user.route";
-import { app as groupRoutes } from "routes/group.route";
-import { app as expenseRoutes } from "routes/expense.route";
+import { app as userRoutes } from "./routes/user.route";
+import { app as groupRoutes } from "./routes/group.route";
+import { app as expenseRoutes } from "./routes/expense.route";
 
 export const app = express();
 

@@ -1,8 +1,8 @@
 import { v4 } from "uuid";
-import { HttpError } from "utilities/http-error";
+import { HttpError } from "../../utilities/http-error";
 import { CreateGroupDto } from "./dto/create-group.dto";
-import { Group, groups } from "models/group.model";
-import { users } from "models/user.model";
+import { Group, groups } from "../../models/group.model";
+import { users } from "../../models/user.model";
 
 export const createGroup = (dto: CreateGroupDto): string => {
   if (!canCreateGroup(dto)) {

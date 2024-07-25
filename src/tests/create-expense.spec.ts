@@ -1,5 +1,5 @@
-import { createExpense } from "modules/expense/create-expense";
-import { HttpError } from "utilities/http-error";
+import { createExpense } from "../modules/expense/create-expense";
+import { HttpError } from "../utilities/http-error";
 
 describe("Create Expense", () => {
   it("should not create if cost is not positive", () => {

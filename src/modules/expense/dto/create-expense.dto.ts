@@ -1,4 +1,4 @@
-import { generalUserDto } from "modules/user/dto/general-user.dto";
+import { generalUserDto } from "../../../modules/user/dto/general-user.dto";
 import { z } from "zod";
 
 export const createExpenseDto = z.object({

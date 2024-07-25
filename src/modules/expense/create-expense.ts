@@ -1,8 +1,8 @@
 import { v4 } from "uuid";
-import { HttpError } from "utilities/http-error";
-import { users } from "models/user.model";
+import { HttpError } from "../../utilities/http-error";
+import { users } from "../../models/user.model";
 import { CreateExpenseDto } from "./dto/create-expense.dto";
-import { Expense, expenses } from "models/expense.model";
+import { Expense, expenses } from "../../models/expense.model";
 
 export const createExpense = (dto: CreateExpenseDto): string => {
   if (dto.cost <= 0) {
