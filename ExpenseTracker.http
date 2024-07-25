@@ -1,0 +1,30 @@
+POST http://localhost:3000/user
+content-type: application/json
+
+{
+    "username": "ali",
+    "password": "ali1234",
+}
+
+###
+
+POST http://localhost:3000/group
+content-type: application/json
+
+{
+    "user_ids": ["fcc3341a-5986-42e4-8596-561b5fa6adc1","8de48ae6-362d-4aeb-96f7-31f69dcc5f05","d7cad5d7-9f6c-4fdc-ad6a-71eada69441b"]
+}
+
+###
+
+POST http://localhost:3000/expense
+content-type: application/json
+
+{
+    "group_id": "rfk4314f-fe46-4162-bc85-fri973cb5b32",
+    "spender": "a71f314f-fe46-4162-bc85-c208adcb5b32",
+    "cost": "30000",
+    "description": "cafe",
+}
+
+###
