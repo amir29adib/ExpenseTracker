@@ -4,7 +4,7 @@ import { HttpError } from "../../utilities/http-error";
 import { CreateUserDto } from "../../modules/user/dto/create-user.dto";
 import { isEmptyString } from "../../utilities/empty-validation";
 
-export const createUser = (dto: CreateUserDto): string => {
+export const createUser = (dto: CreateUserDto): User => {
   if (isEmptyString(dto.username) || isEmptyString(dto.password)) {
     throw new HttpError(400, "Username or Password is empty!");
   }
@@ -21,5 +21,5 @@ export const createUser = (dto: CreateUserDto): string => {
   };
   users.push(user);
 
-  return user.id;
+  return user;
 };

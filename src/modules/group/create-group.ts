@@ -4,7 +4,7 @@ import { CreateGroupDto } from "./dto/create-group.dto";
 import { Group, groups } from "../../models/group.model";
 import { users } from "../../models/user.model";
 
-export const createGroup = (dto: CreateGroupDto): string => {
+export const createGroup = (dto: CreateGroupDto): Group => {
   if (!canCreateGroup(dto)) {
     throw new HttpError(400, `This group of users is exist!`);
   }
@@ -25,7 +25,7 @@ export const createGroup = (dto: CreateGroupDto): string => {
 
   groups.push(group);
 
-  return group.id;
+  return group;
 };
 
 export const canCreateGroup = (dto: CreateGroupDto): boolean => {

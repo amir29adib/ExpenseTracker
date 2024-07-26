@@ -4,7 +4,7 @@ import { users } from "../../models/user.model";
 import { CreateExpenseDto } from "./dto/create-expense.dto";
 import { Expense, expenses } from "../../models/expense.model";
 
-export const createExpense = (dto: CreateExpenseDto): string => {
+export const createExpense = (dto: CreateExpenseDto): Expense => {
   if (dto.cost <= 0) {
     throw new HttpError(400, "Price must be positive number!");
   }
@@ -23,5 +23,5 @@ export const createExpense = (dto: CreateExpenseDto): string => {
   };
 
   expenses.push(expense);
-  return expense.id;
+  return expense;
 };

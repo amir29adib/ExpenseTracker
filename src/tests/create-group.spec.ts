@@ -5,15 +5,15 @@ import { HttpError } from "../utilities/http-error";
 
 describe("Create Group", () => {
   it("should not create if one user_ids is repetitious", () => {
-    const firstUserId = createUser({ username: "ali", password: "ali1234" });
-    const secondUserId = createUser({ username: "omid", password: "omid1234" });
+    const firstUser = createUser({ username: "ali", password: "ali1234" });
+    const secondUser = createUser({ username: "omid", password: "omid1234" });
 
     createGroup({
-      user_ids: [firstUserId, secondUserId],
+      user_ids: [firstUser.id, secondUser.id],
     });
     expect(() =>
       createGroup({
-        user_ids: [secondUserId, firstUserId],
+        user_ids: [secondUser.id, firstUser.id],
       })
     ).toThrow(HttpError);
   });
