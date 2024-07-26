@@ -1,35 +1,27 @@
-import { v4 } from "uuid";
-import { createGroup } from "../modules/group/create-group";
-import { createUser } from "../modules/user/create-user";
-import { HttpError } from "../utilities/http-error";
+import request from "supertest";
+import { app } from "../api";
 
 describe("Group", () => {
   describe("Create", () => {
-      it("should not create if user did not login", async () => {
-        await 
-    });
-    it("should not create if user did not login", async () => {
-      const spenderUser = createUser({
-        username: "amir",
-        password: "amir1234",
-      });
-      const firstUser = createUser({ username: "ali", password: "ali1234" });
-      const secondUser = createUser({ username: "omid", password: "omid1234" });
+    it("should create group if users of group are exist", async () => {
+      const { body: user1 } = await request(app)
+        .post("/user")
+        .send({ username: "ali", password: "ali1234" })
+        .expect(200);
+      const { body: user2 } = await request(app)
+        .post("/user")
+        .send({ username: "omid", password: "omid1234" })
+        .expect(200);
 
-      createGroup({
-        user_ids: [firstUser.id, secondUser.id],
-      });
-      expect(() =>
-        createGroup({
-          user_ids: [secondUser.id, firstUser.id],
-        })
-      ).toThrow(HttpError);
-    });
+      const { body: user3 } = await request(app)
+        .post("/user")
+        .send({ username: "amir", password: "amir1234" })
+        .expect(200);
 
-    it("should not create if at least one item of user_ids does not exist!", () => {
-      createGroup({
-        user_ids: [v4()],
-      });
+      await request(app)
+        .post("/group")
+        .send({ user_ids: [user1.id, user2.id, user3.id] })
+        .expect(200);
     });
   });
 });
