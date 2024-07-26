@@ -1,4 +1,4 @@
-import { User } from "./user.model";
+import { User } from "../modules/user/model/user.model";
 
 export interface Expense {
   id: string;

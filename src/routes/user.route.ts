@@ -1,10 +1,15 @@
 import { Router } from "express";
-import { createUser } from "../modules/user/create-user";
+import { UserService } from "../modules/user/user.service";
+import { createUserDto } from "../modules/user/dto/create-user.dto";
 
-export const app = Router();
+export const makeUserRouter = (userService: UserService) => {
+  const app = Router();
 
-app.post("", (req, res) => {
-  const { username, password } = req.body;
-  const user = createUser({ username: username, password: password });
-  res.status(200).send(user);
-});
+  app.post("", (req, res) => {
+    const dto = createUserDto.parse(req.body);
+    const user = userService.createUser(dto);
+    res.status(200).send(user);
+  });
+
+  return app;
+};

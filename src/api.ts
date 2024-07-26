@@ -1,7 +1,9 @@
 import express from "express";
-import { app as userRoutes } from "./routes/user.route";
+import { makeUserRouter } from "./routes/user.route";
 import { app as groupRoutes } from "./routes/group.route";
 import { app as expenseRoutes } from "./routes/expense.route";
+import { UserService } from "./modules/user/user.service";
+import { UserRepository } from "./modules/user/user.repository";
 
 export const app = express();
 
@@ -14,7 +16,10 @@ if (process.env.NODE_ENV !== "Test") {
   });
 }
 
-app.use('/user', userRoutes);
+const userRepo = new UserRepository();
+const userService = new UserService(userRepo);
+
+app.use("/user", makeUserRouter(userService));
 app.use("/group", groupRoutes);
 app.use("/expense", expenseRoutes);
 

@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { HttpError } from "../../utilities/http-error";
 import { CreateGroupDto } from "./dto/create-group.dto";
 import { Group, groups } from "../../models/group.model";
-import { users } from "../../models/user.model";
+import { users } from "../user/model/user.model";
 
 export const createGroup = (dto: CreateGroupDto): Group => {
   if (!canCreateGroup(dto)) {
@@ -22,7 +22,7 @@ export const createGroup = (dto: CreateGroupDto): Group => {
     id: v4(),
     user_ids: dto.user_ids,
   };
-  
+
   groups.push(group);
 
   return group;

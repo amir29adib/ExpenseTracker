@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { createGroup } from "../modules/group/create-group";
-import { createUser } from "../modules/user/create-user";
+import { createUser } from "../modules/user/user.service";
 import { HttpError } from "../utilities/http-error";
 
 describe("Create Group", () => {

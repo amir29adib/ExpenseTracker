@@ -1,4 +1,4 @@
-import { createUser } from "../modules/user/create-user";
+import { createUser } from "../modules/user/user.service";
 import { HttpError } from "../utilities/http-error";
 
 describe("Create User", () => {
