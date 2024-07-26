@@ -5,6 +5,6 @@ export const app = Router();
 
 app.post("", (req, res) => {
   const { username, password } = req.body;
-  const user_id = createUser({ username: username, password: password });
-  res.status(200).send({ user_id: user_id });
+  const user = createUser({ username: username, password: password });
+  res.status(200).send(user);
 });

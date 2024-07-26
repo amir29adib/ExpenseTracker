@@ -23,5 +23,6 @@ export const createExpense = (dto: CreateExpenseDto): Expense => {
   };
 
   expenses.push(expense);
+
   return expense;
 };

@@ -5,6 +5,6 @@ export const app = Router();
 
 app.post("", (req, res) => {
   const { user_ids } = req.body;
-  const group_id = createGroup({ user_ids: user_ids });
-  res.status(200).send({ group_id: group_id });
+  const group = createGroup({ user_ids: user_ids });
+  res.status(200).send(group);
 });

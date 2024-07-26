@@ -22,7 +22,7 @@ export const createGroup = (dto: CreateGroupDto): Group => {
     id: v4(),
     user_ids: dto.user_ids,
   };
-
+  
   groups.push(group);
 
   return group;
