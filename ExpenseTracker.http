@@ -22,7 +22,7 @@ content-type: application/json
 
 {
     "group_id": "rfk4314f-fe46-4162-bc85-fri973cb5b32",
-    "spender": "a71f314f-fe46-4162-bc85-c208adcb5b32",
+    "user_id": "a71f314f-fe46-4162-bc85-c208adcb5b32",
     "cost": "30000",
     "description": "cafe",
 }

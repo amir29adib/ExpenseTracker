@@ -3,7 +3,7 @@ import { groups } from "../../models/group.model";
 
 export const getCreditorExpnese = (user_id: string): Expense[] => {
   const creditorExpenses = expenses.filter(
-    (item) => item.spender.id === user_id
+    (item) => item.user_id === user_id
   );
 
   return creditorExpenses;

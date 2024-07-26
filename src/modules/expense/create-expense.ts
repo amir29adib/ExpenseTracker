@@ -9,7 +9,7 @@ export const createExpense = (dto: CreateExpenseDto): Expense => {
     throw new HttpError(400, "Price must be positive number!");
   }
 
-  const checkSpenderExist = users.find((item) => item.id === dto.spender.id);
+  const checkSpenderExist = users.find((item) => item.id === dto.user_id);
   if (checkSpenderExist === undefined) {
     throw new HttpError(400, "Spender does not exist!");
   }
@@ -18,7 +18,7 @@ export const createExpense = (dto: CreateExpenseDto): Expense => {
     id: v4(),
     group_id: dto.group_id,
     cost: dto.cost,
-    spender: dto.spender,
+    user_id: dto.user_id,
     description: dto.description,
   };
 

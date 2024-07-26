@@ -8,11 +8,7 @@ describe("Create Expense", () => {
       createExpense({
         group_id: v4(),
         cost: 0,
-        spender: {
-          id: v4(),
-          username: "ali",
-          password: "ali1234",
-        },
+        user_id: v4(),
         description: "cafe",
       })
     ).toThrow(HttpError);
@@ -20,26 +16,18 @@ describe("Create Expense", () => {
       createExpense({
         group_id: v4(),
         cost: -10,
-        spender: {
-          id: v4(),
-          username: "ali",
-          password: "ali1234",
-        },
+        user_id: v4(),
         description: "park",
       })
     ).toThrow(HttpError);
   });
 
-  it("should not create if the spender does not exist!", () => {
+  it("should not create if the spender user does not exist!", () => {
     expect(() =>
       createExpense({
         group_id: v4(),
         cost: 10000,
-        spender: {
-          id: v4(),
-          username: "ali",
-          password: "ali1234",
-        },
+        user_id: v4(),
         description: "escape room",
       })
     ).toThrow(HttpError);

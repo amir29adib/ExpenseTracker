@@ -4,7 +4,7 @@ export interface Expense {
   id: string;
   group_id: string;
   cost: number;
-  spender: User;
+  user_id: string;
   description: string;
 }
 
