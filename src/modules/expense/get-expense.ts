@@ -1,10 +1,8 @@
 import { Expense, expenses } from "../../models/expense.model";
-import { groups } from "../../models/group.model";
+import { groups } from "../group/model/group";
 
 export const getCreditorExpnese = (user_id: string): Expense[] => {
-  const creditorExpenses = expenses.filter(
-    (item) => item.user_id === user_id
-  );
+  const creditorExpenses = expenses.filter((item) => item.user_id === user_id);
 
   return creditorExpenses;
 };

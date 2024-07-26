@@ -1,18 +1,32 @@
 import { v4 } from "uuid";
-import { createGroup } from "../modules/group/create-group";
-import { createUser } from "../modules/user/user.service";
+import { UserService } from "../modules/user/user.service";
 import { HttpError } from "../utilities/http-error";
+import { GroupService } from "../modules/group/group.service";
 
 describe("Create Group", () => {
-  it("should not create if one user_ids is repetitious", () => {
-    const firstUser = createUser({ username: "ali", password: "ali1234" });
-    const secondUser = createUser({ username: "omid", password: "omid1234" });
+  let groupService: GroupService;
+  let userService: UserService;
 
-    createGroup({
+  beforeEach(() => {
+    groupService = new GroupService();
+    userService = new UserService();
+  });
+
+  it("should not create if one user_ids is repetitious", () => {
+    const firstUser = userService.createUser({
+      username: "ali",
+      password: "ali1234",
+    });
+    const secondUser = userService.createUser({
+      username: "omid",
+      password: "omid1234",
+    });
+
+    groupService.createGroup({
       user_ids: [firstUser.id, secondUser.id],
     });
     expect(() =>
-      createGroup({
+      groupService.createGroup({
         user_ids: [secondUser.id, firstUser.id],
       })
     ).toThrow(HttpError);
@@ -20,7 +34,7 @@ describe("Create Group", () => {
 
   it("should not create if at least one item of user_ids does not exist!", () => {
     expect(() =>
-      createGroup({
+      groupService.createGroup({
         user_ids: [v4()],
       })
     ).toThrow(HttpError);

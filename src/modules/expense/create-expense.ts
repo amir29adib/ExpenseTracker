@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { HttpError } from "../../utilities/http-error";
-import { users } from "../user/model/user.model";
+import { users } from "../user/model/user";
 import { CreateExpenseDto } from "./dto/create-expense.dto";
 import { Expense, expenses } from "../../models/expense.model";
 

@@ -1,15 +1,18 @@
 import { v4 } from "uuid";
-import { User } from "./model/user.model";
+import { User } from "./model/user";
 import { HttpError } from "../../utilities/http-error";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { isEmptyString } from "../../utilities/empty-validation";
 import { UserRepository } from "./user.repository";
 import { userExpenseDto } from "./dto/user-expense.dto";
 import { getCreditorExpnese, getDebtorExpnese } from "../expense/get-expense";
+import { mainUserRepository } from "../../dependancy";
 
 export class UserService {
-  constructor(private userRepo: UserRepository) {
-    this.userRepo = new UserRepository();
+  private userRepo: UserRepository;
+
+  constructor() {
+    this.userRepo = mainUserRepository;
   }
 
   createUser = (dto: CreateUserDto): User => {
@@ -27,9 +30,7 @@ export class UserService {
       password: dto.password,
     };
 
-    this.userRepo.create(user);
-
-    return user;
+    return this.userRepo.create(user);
   };
 
   getUserExpense = (user_id: string): userExpenseDto => {
