@@ -1,9 +1,9 @@
 import request from "supertest";
 import { app } from "../api";
 
-describe("Group", () => {
+describe("Expense", () => {
   describe("Create", () => {
-    it("should create group if users of group are exist", async () => {
+    it("should create group if group and spender are exist", async () => {
       const { body: spenderUser } = await request(app)
         .post("/user")
         .send({ username: "arman", password: "arman1234" })
@@ -13,6 +13,7 @@ describe("Group", () => {
         .post("/user")
         .send({ username: "ali", password: "ali1234" })
         .expect(200);
+      
       const { body: user2 } = await request(app)
         .post("/user")
         .send({ username: "omid", password: "omid1234" })
@@ -34,7 +35,7 @@ describe("Group", () => {
           group_id: group.id,
           cost: 10000,
           user_id: spenderUser.id,
-          description: "telecabin",
+          description: "telecabin"
         })
         .expect(200);
     });
