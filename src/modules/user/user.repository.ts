@@ -21,7 +21,8 @@ export interface UpdateUser {
 }
 
 export class UserRepository implements IUserRepository {
-  private users: User[] = getUserDataSource("json");
+  // private users: User[] = getUserDataSource("json");
+  private users: User[] = [];
 
   public create(user: CreateUser): User {
     const createdUser = { ...user, id: v4() };

@@ -6,7 +6,6 @@ describe("Create User", () => {
   let userService: UserService;
 
   beforeEach(() => {
-    const userRepo = new UserRepository();
     userService = new UserService();
   });
 

@@ -1,5 +1,3 @@
-import { User } from "../modules/user/model/user";
-
 export interface Expense {
   id: string;
   group_id: string;

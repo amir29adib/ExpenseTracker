@@ -5,14 +5,16 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { isEmptyString } from "../../utilities/empty-validation";
 import { UserRepository } from "./user.repository";
 import { userExpenseDto } from "./dto/user-expense.dto";
-import { getCreditorExpnese, getDebtorExpnese } from "../expense/get-expense";
 import { mainUserRepository } from "../../dependancy";
+import { ExpenseService } from "../expense/expense.service";
 
 export class UserService {
   private userRepo: UserRepository;
+  private expenseService: ExpenseService;
 
   constructor() {
     this.userRepo = mainUserRepository;
+    this.expenseService = new ExpenseService();
   }
 
   createUser = (dto: CreateUserDto): User => {
@@ -33,14 +35,22 @@ export class UserService {
     return this.userRepo.create(user);
   };
 
+  findUserById(id: string): User | undefined {
+    return this.userRepo.findById(id);
+  }
+
+  getAllUser(): User[] {
+    return this.userRepo.getAll();
+  }
+
   getUserExpense = (user_id: string): userExpenseDto => {
     if (isEmptyString(user_id)) {
       throw new HttpError(400, "user_id should not empty");
     }
 
-    const creditorExpenses = getCreditorExpnese(user_id);
+    const creditorExpenses = this.expenseService.getCreditorExpnese(user_id);
 
-    const debtorExpenses = getDebtorExpnese(user_id);
+    const debtorExpenses = this.expenseService.getDebtorExpnese(user_id);
 
     const dto: userExpenseDto = {
       debtorExpenses: debtorExpenses,

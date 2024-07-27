@@ -1,17 +1,16 @@
 import { HttpError } from "../../utilities/http-error";
 import { CreateGroupDto } from "./dto/create-group.dto";
-import { Group, groups } from "./model/group";
+import { Group } from "./model/group";
 import { GroupRepository } from "./group.repository";
-import { UserRepository } from "../user/user.repository";
-import { mainGroupRepository, mainUserRepository } from "../../dependancy";
+import { mainGroupRepository } from "../../dependancy";
+import { UserService } from "../user/user.service";
 
 export class GroupService {
   private groupRepo: GroupRepository;
-  private userRepo: UserRepository;
+  private userService = new UserService();
 
   constructor() {
     this.groupRepo = mainGroupRepository;
-    this.userRepo = mainUserRepository;
   }
 
   createGroup = (dto: CreateGroupDto): Group => {
@@ -23,11 +22,11 @@ export class GroupService {
       throw new HttpError(400, `This group of users is exist!`);
     }
 
-    const usersIds = this.userRepo.getAll().map((item) => item.id);
+    const usersIds = this.userService.getAllUser().map((item) => item.id);
     const unknownUserId = dto.user_ids.find(
       (user_id) => !usersIds.includes(user_id)
     );
-    console.log(unknownUserId);
+
     if (unknownUserId !== undefined) {
       throw new HttpError(400, `User_id ${unknownUserId} is not found`);
     }
@@ -35,16 +34,19 @@ export class GroupService {
     return this.groupRepo.create(group);
   };
 
+  getAllGroup(): Group[] {
+    return this.groupRepo.getAll();
+  }
+
   canCreateGroup = (dto: CreateGroupDto): boolean => {
     let flag = true;
 
-    groups.forEach((element) => {
+    this.groupRepo.getAll().forEach((element) => {
       let counter = 0;
       element.user_ids.forEach((user_id) => {
         if (dto.user_ids.includes(user_id)) {
           counter++;
         }
-
         if (counter === dto.user_ids.length) {
           flag = false;
         }

@@ -3,6 +3,7 @@ import { Group } from "./model/group";
 
 export interface IGroupRepository {
   create(group: CreateGroup): Group;
+  getAll(): Group[];
 }
 
 export interface CreateGroup {
@@ -16,5 +17,9 @@ export class GroupRepository implements IGroupRepository {
     const createdGroup = { ...group, id: v4() };
     this.groups.push(createdGroup);
     return createdGroup;
+  }
+
+  getAll(): Group[]{
+    return this.groups;
   }
 }
