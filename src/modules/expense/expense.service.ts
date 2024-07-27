@@ -9,12 +9,10 @@ import { mainExpenseRepository } from "../../dependancy";
 
 export class ExpenseService {
   private expenseRepo: ExpenseRepository;
-  private userService: UserService;
   private groupService: GroupService;
 
   constructor() {
     this.expenseRepo = mainExpenseRepository;
-    this.userService = new UserService();
     this.groupService = new GroupService();
   }
 
@@ -23,7 +21,8 @@ export class ExpenseService {
       throw new HttpError(400, "Price must be positive number!");
     }
 
-    const checkSpenderExist = this.userService.findUserById(dto.user_id);
+    const userService = new UserService();
+    const checkSpenderExist = userService.findUserById(dto.user_id);
     if (checkSpenderExist === undefined) {
       throw new HttpError(400, "Spender does not exist!");
     }

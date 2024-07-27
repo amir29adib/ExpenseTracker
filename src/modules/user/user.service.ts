@@ -10,11 +10,9 @@ import { ExpenseService } from "../expense/expense.service";
 
 export class UserService {
   private userRepo: UserRepository;
-  private expenseService: ExpenseService;
 
   constructor() {
     this.userRepo = mainUserRepository;
-    this.expenseService = new ExpenseService();
   }
 
   createUser = (dto: CreateUserDto): User => {
@@ -48,9 +46,9 @@ export class UserService {
       throw new HttpError(400, "user_id should not empty");
     }
 
-    const creditorExpenses = this.expenseService.getCreditorExpnese(user_id);
-
-    const debtorExpenses = this.expenseService.getDebtorExpnese(user_id);
+    const expenseService = new ExpenseService();
+    const creditorExpenses = expenseService.getCreditorExpnese(user_id);
+    const debtorExpenses = expenseService.getDebtorExpnese(user_id);
 
     const dto: userExpenseDto = {
       debtorExpenses: debtorExpenses,
