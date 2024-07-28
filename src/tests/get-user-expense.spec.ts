@@ -1,8 +1,14 @@
-import { getUserExpense } from "../modules/user/get-user-expense";
+import { UserService } from "../modules/user/user.service";
 import { HttpError } from "../utilities/http-error";
 
 describe("Get User Expenses", () => {
+  let userService: UserService;
+
+  beforeEach(() => {
+    userService = new UserService();
+  });
+
   it("should not get userExpense if user_id is empty", () => {
-    expect(() => getUserExpense("")).toThrow(HttpError);
+    expect(() => userService.getUserExpense("")).toThrow(HttpError);
   });
 });

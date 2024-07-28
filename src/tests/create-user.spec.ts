@@ -1,4 +1,3 @@
-import { UserRepository } from "../modules/user/user.repository";
 import { UserService } from "../modules/user/user.service";
 import { HttpError } from "../utilities/http-error";
 
