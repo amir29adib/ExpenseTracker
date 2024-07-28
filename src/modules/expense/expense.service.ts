@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { HttpError } from "../../utilities/http-error";
 import { CreateExpenseDto } from "./dto/create-expense.dto";
-import { Expense } from "./model/expense";
+import { Expense } from "./model/expense.model";
 import { UserService } from "../user/user.service";
 import { GroupService } from "../group/group.service";
 import { ExpenseRepository } from "./expense.repository";

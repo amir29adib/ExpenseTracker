@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { Expense } from "./model/expense";
+import { Expense } from "./model/expense.model";
 
 export interface IExpenseRepository {
   create(expense: CreateExpense): Expense;

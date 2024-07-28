@@ -1,6 +1,6 @@
 import { HttpError } from "../../utilities/http-error";
 import { CreateGroupDto } from "./dto/create-group.dto";
-import { Group } from "./model/group";
+import { Group } from "./model/group.model";
 import { GroupRepository } from "./group.repository";
 import { mainGroupRepository } from "../../dependancy";
 import { UserService } from "../user/user.service";

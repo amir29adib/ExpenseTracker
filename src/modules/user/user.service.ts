@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { User } from "./model/user";
+import { User } from "./model/user.model";
 import { HttpError } from "../../utilities/http-error";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { isEmptyString } from "../../utilities/empty-validation";

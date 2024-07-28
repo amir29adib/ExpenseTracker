@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
-import { User } from "./model/user";
-import { DataSourceType } from "../../data-soure";
+import { User } from "./model/user.model";
+import { DataSourceEntity, DataSourceType } from "../../data-soure";
 import fs from "fs";
 
 interface IUserRepository {
@@ -54,7 +54,7 @@ export class UserRepository implements IUserRepository {
   }
 }
 
-const getUserDataSource = (env: DataSourceType) => {
+const getUserDataSource = (entity: DataSourceEntity, env: DataSourceType) => {
   switch (env) {
     case "json":
       const jsonString = fs.readFileSync("../../myData.json", "utf-8");

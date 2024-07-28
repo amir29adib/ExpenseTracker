@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { Group } from "./model/group";
+import { Group } from "./model/group.model";
 
 export interface IGroupRepository {
   create(group: CreateGroup): Group;
@@ -19,7 +19,7 @@ export class GroupRepository implements IGroupRepository {
     return createdGroup;
   }
 
-  getAll(): Group[]{
+  getAll(): Group[] {
     return this.groups;
   }
 }
